@@ -278,7 +278,27 @@ export default function UlarTangga() {
   const [winner, setWinner] = useState(null);
   const [log, setLog] = useState([]);
   const [highlight, setHighlight] = useState(null); // square being stepped on
+  const [isMuted, setIsMuted] = useState(true);
   const animRef = useRef(null);
+
+  // ── BGM Engine ───────────────────────────────────────
+  useEffect(() => {
+    if (isMuted) return;
+    // Simple retro lo-fi loop
+    const melody = [261.63, 329.63, 392.00, 440.00, 349.23, 440.00, 392.00, 329.63];
+    let step = 0;
+    const interval = setInterval(() => {
+      const freq = melody[step % melody.length];
+      // Gentle sine pulse
+      beep(freq, 'sine', 0.5, 0.015);
+      // Soft bass every 2 beats
+      if (step % 2 === 0) {
+        beep(freq / 2, 'triangle', 0.8, 0.01);
+      }
+      step++;
+    }, 500);
+    return () => clearInterval(interval);
+  }, [isMuted]);
 
   const addLog = (txt) => setLog(l => [txt, ...l].slice(0, 10));
 
@@ -855,9 +875,14 @@ export default function UlarTangga() {
             </div>
           </div>
 
-          <button onClick={handleBack} style={{ background:'#fff', border:'4px solid #000', color:'#000', fontSize:12, fontWeight:'bold', letterSpacing:2, padding:'10px 0', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
-            ← BACK
-          </button>
+          <div style={{ display:'flex', gap:8 }}>
+            <button onClick={handleBack} style={{ flex:1, background:'#fff', border:'4px solid #000', color:'#000', fontSize:12, fontWeight:'bold', letterSpacing:2, padding:'10px 0', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
+              ← BACK
+            </button>
+            <button onClick={() => { setIsMuted(!isMuted); getAC().resume(); }} style={{ flex:1, background:isMuted?'#f0f0f0':'#00FF66', border:'4px solid #000', color:'#000', fontSize:10, fontWeight:'900', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
+              {isMuted ? '🔇 Muted' : '🔊 Music'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
