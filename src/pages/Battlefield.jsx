@@ -372,6 +372,8 @@ export default function UlarTangga() {
   }, []);
 
   function findMatch() {
+    setIsMuted(false);
+    getAC().resume();
     if (socketRef.current && !socketRef.current.connected) {
       socketRef.current.connect();
     }
