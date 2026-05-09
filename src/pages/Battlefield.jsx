@@ -595,13 +595,16 @@ export default function UlarTangga() {
       <div style={{ position:'fixed', inset:0, background:'#f4f4f0', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', gap:32 }}>
         <div style={{ 
           color: '#000', 
-          fontSize: '48px', 
+          fontSize: window.innerWidth < 500 ? '32px' : '48px', 
           fontWeight: '900', 
-          letterSpacing: '8px',
+          letterSpacing: '4px',
           textShadow: '4px 4px 0px #FF4911',
-          zIndex: 10
+          zIndex: 10,
+          textAlign: 'center',
+          padding: '0 20px',
+          lineHeight: '1.2'
         }}>
-          BANKR SNAKE
+          BANKR<br/>SNAKE
         </div>
         
         <PixelTV />
