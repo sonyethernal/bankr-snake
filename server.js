@@ -23,11 +23,13 @@ io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
   socket.on('find_match', () => {
+    console.log(`[SOCKET] User ${socket.id} requested matchmaking.`);
     // If the player is already waiting, do nothing
     if (waitingPlayer === socket) return;
 
     if (waitingPlayer) {
       // Match found
+      console.log(`[MATCH] Found opponent for ${socket.id}. Pairing with ${waitingPlayer.id}`);
       const room = `room_${++roomCounter}`;
       socket.join(room);
       waitingPlayer.join(room);
@@ -52,13 +54,13 @@ io.on('connection', (socket) => {
         opponentId: waitingPlayer.id
       });
 
-      console.log(`Match started in ${room}: ${waitingPlayer.id} (P1) vs ${socket.id} (P2)`);
+      console.log(`[GAME] Started in ${room}: ${waitingPlayer.id} vs ${socket.id}`);
       waitingPlayer = null; // Clear queue
     } else {
       // Join queue
       waitingPlayer = socket;
       socket.emit('waiting_for_match');
-      console.log('User waiting for match:', socket.id);
+      console.log(`[QUEUE] User ${socket.id} is now waiting for an opponent.`);
     }
   });
 

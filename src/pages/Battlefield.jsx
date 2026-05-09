@@ -342,7 +342,19 @@ export default function UlarTangga() {
   }, [gameState, winner, rolling, showingResult, animating, isSliding, turn, playerRole]);
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:3001');
+    const serverUrl = window.location.hostname === 'localhost' 
+      ? 'http://localhost:3001' 
+      : `http://${window.location.hostname}:3001`;
+    
+    socketRef.current = io(serverUrl);
+
+    socketRef.current.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socketRef.current.on('connect_error', (err) => {
+      console.error('Socket connection error:', err);
+    });
 
     socketRef.current.on('waiting_for_match', () => {
       setGameState('waiting');
@@ -601,7 +613,27 @@ export default function UlarTangga() {
 
         {gameState === 'waiting' && (
           <div style={{ textAlign:'center' }}>
-            <div style={{ color:'#000', fontSize:22, fontWeight:'bold', marginBottom:20, background:'#FFE100', padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>SEARCHING FOR OPPONENT...</div>
+            <div style={{ 
+              color:'#000', 
+              fontSize:22, 
+              fontWeight:'bold', 
+              marginBottom:20, 
+              background:'#FFE100', 
+              padding:'20px 40px', 
+              border:'4px solid #000', 
+              boxShadow:'8px 8px 0px #000',
+              animation: 'pulse 1.5s infinite'
+            }}>
+              <style>{`
+                @keyframes pulse {
+                  0% { transform: scale(1); }
+                  50% { transform: scale(1.05); }
+                  100% { transform: scale(1); }
+                }
+              `}</style>
+              SEARCHING FOR OPPONENT...
+              <div style={{ fontSize:14, marginTop:10, fontWeight: 'normal', opacity: 0.8 }}>PLEASE WAIT FOR ANOTHER PLAYER TO JOIN</div>
+            </div>
             <button onClick={cancelSearch} style={{ background:'#FF4911', border:'4px solid #000', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #000' }}>CANCEL</button>
           </div>
         )}
