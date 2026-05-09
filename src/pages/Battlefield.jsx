@@ -574,6 +574,22 @@ export default function UlarTangga() {
   const p1xy = displayPos[0] > 0 ? squareToXY(displayPos[0]) : null;
   const p2xy = displayPos[1] > 0 ? squareToXY(displayPos[1]) : null;
 
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 700) {
+        setScale((width - 32) / BOARD_PX);
+      } else {
+        setScale(1);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (gameState !== 'playing') {
     return (
       <div style={{ position:'fixed', inset:0, background:'#f4f4f0', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', gap:32 }}>
@@ -661,18 +677,43 @@ export default function UlarTangga() {
   }
 
   return (
-    <div style={{ position:'fixed', inset:0, background:'#f4f4f0', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', overflow:'auto', padding:16 }}>
+    <div style={{ 
+      position:'fixed', 
+      inset:0, 
+      background:'#f4f4f0', 
+      display:'flex', 
+      alignItems:'center', 
+      justifyContent:'center', 
+      fontFamily:'"Courier New",monospace', 
+      overflowY:'auto', 
+      overflowX:'hidden',
+      padding:'20px 10px' 
+    }}>
       <style>{`
         @keyframes diceShake {
           0% { transform: rotate(-10deg) scale(1); }
           50% { transform: rotate(10deg) scale(1.1); }
           100% { transform: rotate(-10deg) scale(1); }
         }
+        @media (max-width: 850px) {
+          .game-container { flex-direction: column !important; align-items: center !important; }
+          .side-panel { width: 100% !important; max-width: ${BOARD_PX}px !important; }
+        }
       `}</style>
-      <div style={{ display:'flex', gap:20, alignItems:'flex-start' }}>
+      <div className="game-container" style={{ display:'flex', gap:20, alignItems:'flex-start', transition:'all 0.3s ease' }}>
 
         {/* ── PAPAN (full SVG) ── */}
-        <div style={{ position:'relative', flexShrink:0, border:'6px solid #000', boxShadow:'10px 10px 0px #000', background:'#000', overflow:'hidden' }}>
+        <div style={{ 
+          position:'relative', 
+          flexShrink:0, 
+          border:'6px solid #000', 
+          boxShadow:'10px 10px 0px #000', 
+          background:'#000', 
+          overflow:'hidden',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top center',
+          marginBottom: scale < 1 ? -(BOARD_PX * (1 - scale)) : 0 // Adjust container height when scaled
+        }}>
           <svg width={BOARD_PX} height={BOARD_PX}>
             {/* Outer board bg */}
             <rect width={BOARD_PX} height={BOARD_PX} fill="#f5f0e0"/>
@@ -860,7 +901,7 @@ export default function UlarTangga() {
 
 
         {/* ── PANEL KANAN ── */}
-        <div style={{ width:240, display:'flex', flexDirection:'column', gap:16 }}>
+        <div className="side-panel" style={{ width:240, display:'flex', flexDirection:'column', gap:16 }}>
           {/* Title Logo */}
           <div style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
             <PixelTV scale={0.7} />
