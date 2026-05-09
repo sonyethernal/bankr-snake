@@ -560,6 +560,23 @@ export default function UlarTangga() {
           </button>
         )}
 
+        {gameState === 'menu' && (
+          <a href="https://x.com/bankrsnake" target="_blank" rel="noreferrer" style={{ 
+            color:'#000', 
+            fontSize:14, 
+            fontWeight:'900', 
+            textDecoration:'none', 
+            borderBottom:'4px solid #000',
+            letterSpacing:2,
+            transition:'all 0.1s'
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = '#FFE100'}
+          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          >
+            @BANKRSNAKE
+          </a>
+        )}
+
         {gameState === 'waiting' && (
           <div style={{ textAlign:'center' }}>
             <div style={{ color:'#000', fontSize:22, fontWeight:'bold', marginBottom:20, background:'#FFE100', padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>SEARCHING FOR OPPONENT...</div>
