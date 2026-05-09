@@ -696,23 +696,27 @@ export default function UlarTangga() {
           100% { transform: rotate(-10deg) scale(1); }
         }
         @media (max-width: 850px) {
-          .game-container { flex-direction: column !important; align-items: center !important; }
-          .side-panel { width: 100% !important; max-width: ${BOARD_PX}px !important; }
+          .game-container { flex-direction: column !important; align-items: center !important; gap: 10px !important; }
+          .side-panel { width: 100% !important; max-width: ${BOARD_PX}px !important; padding: 0 10px; }
+          .pixel-tv-container { display: none !important; }
+          .player-cards-container { flex-direction: row !important; gap: 8px !important; }
+          .player-card { flex: 1 !important; padding: 8px !important; }
+          .game-log { max-height: 100px !important; font-size: 10px !important; }
         }
       `}</style>
-      <div className="game-container" style={{ display:'flex', gap:20, alignItems:'flex-start', transition:'all 0.3s ease' }}>
+      <div className="game-container" style={{ display:'flex', gap:20, alignItems:'flex-start', transition:'all 0.3s ease', maxWidth:'100vw' }}>
 
         {/* ── PAPAN (full SVG) ── */}
         <div style={{ 
           position:'relative', 
           flexShrink:0, 
-          border:'6px solid #000', 
-          boxShadow:'10px 10px 0px #000', 
+          border:'4px solid #000', 
+          boxShadow: scale < 1 ? '5px 5px 0px #000' : '10px 10px 0px #000', 
           background:'#000', 
           overflow:'hidden',
           transform: `scale(${scale})`,
           transformOrigin: 'top center',
-          marginBottom: scale < 1 ? -(BOARD_PX * (1 - scale)) : 0 // Adjust container height when scaled
+          marginBottom: scale < 1 ? -(BOARD_PX * (1 - scale)) + 10 : 0
         }}>
           <svg width={BOARD_PX} height={BOARD_PX}>
             {/* Outer board bg */}
@@ -901,30 +905,36 @@ export default function UlarTangga() {
 
 
         {/* ── PANEL KANAN ── */}
-        <div className="side-panel" style={{ width:240, display:'flex', flexDirection:'column', gap:16 }}>
+        <div className="side-panel" style={{ width:240, display:'flex', flexDirection:'column', gap:12 }}>
           {/* Title Logo */}
-          <div style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
+          <div className="pixel-tv-container" style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
             <PixelTV scale={0.7} />
           </div>
 
           {/* Player cards */}
-          {[0,1].map(i => (
-            <div key={i} style={{
-              background: turn===i&&!winner ? '#FFE100' : '#fff',
-              border:'4px solid #000',
-              padding:'12px',
-              boxShadow:'6px 6px 0px #000',
-              transition:'all 0.1s',
-            }}>
-              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-                <span style={{ color:i===0?'#3300FF':'#FF4911', fontWeight:'900', fontSize:14, letterSpacing:1 }}>P{i+1} {i===0?'(BLUE)':'(RED)'}</span>
-                <span style={{ color:'#000', fontSize:12, fontWeight:'bold' }}>SQUARE: <b>{displayPos[i]||'0'}</b></span>
+          <div className="player-cards-container" style={{ display:'flex', flexDirection:'column', gap:12 }}>
+            {[0,1].map(i => (
+              <div key={i} className="player-card" style={{
+                background: turn===i&&!winner ? '#FFE100' : '#fff',
+                border:'3px solid #000',
+                padding:'10px',
+                boxShadow:'4px 4px 0px #000',
+                transition:'all 0.1s',
+                position:'relative'
+              }}>
+                {turn === i && !winner && (
+                  <div style={{ position:'absolute', top:-8, right:-8, background:'#000', color:'#fff', fontSize:8, padding:'2px 5px', fontWeight:'bold' }}>ACTIVE</div>
+                )}
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+                  <span style={{ color:i===0?'#3300FF':'#FF4911', fontWeight:'900', fontSize:12, letterSpacing:1 }}>P{i+1} {i===0?'(BLUE)':'(RED)'}</span>
+                  <span style={{ color:'#000', fontSize:11, fontWeight:'bold' }}>SQ: <b>{displayPos[i]||'0'}</b></span>
+                </div>
+                <div style={{ marginTop:6, height:4, background:'#eee', border:'1px solid #000' }}>
+                  <div style={{ height:'100%', width:`${displayPos[i]}%`, background:i===0?'#3300FF':'#FF4911', transition:'width 0.3s' }}/>
+                </div>
               </div>
-              <div style={{ marginTop:10, height:6, background:'#000', border:'2px solid #000' }}>
-                <div style={{ height:'100%', width:`${displayPos[i]}%`, background:i===0?'#3300FF':'#FF4911', transition:'width 0.3s' }}/>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
 
           {/* Winner */}
@@ -939,8 +949,8 @@ export default function UlarTangga() {
           )}
 
           {/* Message */}
-          <div style={{ background:'#fff', border:'4px solid #000', padding:'12px', minHeight:48, boxShadow:'4px 4px 0px #000' }}>
-            <div style={{ color:'#000', fontSize:12, fontWeight:'bold', lineHeight:1.4 }}>{msg}</div>
+          <div style={{ background:'#fff', border:'3px solid #000', padding:'10px', minHeight:40, boxShadow:'3px 3px 0px #000' }}>
+            <div style={{ color:'#000', fontSize:11, fontWeight:'bold', lineHeight:1.3 }}>{msg}</div>
           </div>
 
           {/* Legend */}

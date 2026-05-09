@@ -12,16 +12,17 @@
     "start-server": "node server.js"
   },
   "dependencies": {
+    "@emnapi/core": "^1.10.0",
+    "@emnapi/runtime": "^1.10.0",
     "express": "^5.2.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.15.0",
+    "rxjs": "^7.8.2",
     "socket.io": "^4.8.3",
-    "socket.io-client": "^4.8.3",
-    "@emnapi/core": "^1.10.0",
-    "@emnapi/runtime": "^1.10.0"
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
