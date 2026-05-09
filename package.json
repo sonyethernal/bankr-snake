@@ -19,7 +19,9 @@
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.15.0",
     "socket.io": "^4.8.3",
-    "socket.io-client": "^4.8.3"
+    "socket.io-client": "^4.8.3",
+    "@emnapi/core": "^1.10.0",
+    "@emnapi/runtime": "^1.10.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
