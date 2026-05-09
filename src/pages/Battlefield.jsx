@@ -342,9 +342,14 @@ export default function UlarTangga() {
   }, [gameState, winner, rolling, showingResult, animating, isSliding, turn, playerRole]);
 
   useEffect(() => {
-    const serverUrl = window.location.hostname === 'localhost' 
-      ? 'http://localhost:3001' 
-      : `http://${window.location.hostname}:3001`;
+    // Priority: 
+    // 1. VITE_BACKEND_URL (from environment variables)
+    // 2. Localhost logic (if running locally)
+    const serverUrl = import.meta.env.VITE_BACKEND_URL || (
+      window.location.hostname === 'localhost' 
+        ? 'http://localhost:3001' 
+        : `http://${window.location.hostname}:3001`
+    );
     
     socketRef.current = io(serverUrl);
 
