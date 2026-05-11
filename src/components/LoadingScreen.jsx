@@ -73,34 +73,16 @@ const LoadingScreen = ({ onComplete }) => {
           transition={{ duration: 2, repeat: Infinity }}
           className="mb-12"
         >
-          <div 
-            className="flex items-center justify-center relative"
+          <img 
+            src="/tv-screen.png" 
+            alt="Logo" 
             style={{ 
-              width: '160px', 
-              height: '160px', 
-              backgroundColor: '#e6e2d3', 
-              border: '6px solid #1a1a1a', 
-              borderRadius: '12px',
-              boxShadow: '0 0 30px rgba(255, 92, 0, 0.2)' 
-            }}
-          >
-             <div 
-               className="flex flex-col items-center justify-center"
-               style={{ 
-                 width: '120px', 
-                 height: '100px', 
-                 backgroundColor: '#ff5c00', 
-                 borderRadius: '4px',
-                 gap: '12px'
-               }}
-             >
-                <div className="flex" style={{ gap: '24px' }}>
-                  <div style={{ width: '12px', height: '12px', backgroundColor: '#ffd600' }}></div>
-                  <div style={{ width: '12px', height: '12px', backgroundColor: '#ffd600' }}></div>
-                </div>
-                <div style={{ width: '60px', height: '4px', backgroundColor: '#ffd600' }}></div>
-             </div>
-          </div>
+              width: '180px', 
+              height: 'auto', 
+              borderRadius: '16px',
+              boxShadow: '0 0 30px rgba(123, 97, 255, 0.3)' 
+            }} 
+          />
         </motion.div>
 
         <AnimatePresence mode="wait">

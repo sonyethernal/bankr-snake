@@ -3,30 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Play, Settings, Volume2 } from 'lucide-react';
 
-const PixelTV = () => {
-  return (
-    <div className="relative" style={{ width: '320px', height: '320px' }}>
-      <div className="absolute inset-0" style={{ backgroundColor: '#e6e2d3', border: '6px solid #1a1a1a', borderRadius: '16px', boxShadow: '0 0 50px rgba(255, 92, 0, 0.2)' }}>
-        <div className="absolute" style={{ top: '24px', left: '24px', right: '72px', bottom: '64px', backgroundColor: '#1a1a1a', borderRadius: '8px', padding: '6px', overflow: 'hidden' }}>
-          <div className="w-full h-full flex items-center justify-center relative" style={{ backgroundColor: '#ff5c00', borderRadius: '4px' }}>
-            <div className="absolute inset-0 opacity-20" style={{ background: 'repeating-linear-gradient(transparent, transparent 2px, black 2px, black 4px)' }}></div>
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex gap-8">
-                <div style={{ width: '20px', height: '20px', backgroundColor: '#ffd600' }} />
-                <div style={{ width: '20px', height: '20px', backgroundColor: '#ffd600' }} />
-              </div>
-              <div style={{ width: '80px', height: '4px', backgroundColor: '#ffd600' }} />
-            </div>
-          </div>
-        </div>
-        <div className="absolute flex flex-col justify-around items-center" style={{ top: '24px', right: '16px', bottom: '64px', width: '40px' }}>
-          <div style={{ width: '6px', height: '60px', backgroundColor: '#1a1a1a', borderRadius: '10px' }} />
-          <div style={{ width: '6px', height: '60px', backgroundColor: '#1a1a1a', borderRadius: '10px' }} />
-        </div>
-      </div>
-    </div>
-  );
-};
+
 
 const Cockpit = ({ mousePos }) => {
   const navigate = useNavigate();

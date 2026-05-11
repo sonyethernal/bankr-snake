@@ -192,72 +192,7 @@ function LadderSVG({ from, to }) {
 }
 
 // ── Main ───────────────────────────────────────────────
-const PixelTV = ({ scale = 1 }) => {
-  const width = 320 * scale;
-  const height = 280 * scale;
-  
-  return (
-    <div className="relative flex flex-col items-center" style={{ width: `${width}px` }}>
-      {/* Outer Case */}
-      <div className="relative" style={{ 
-        width: `${width}px`,
-        height: `${height}px`,
-        backgroundColor: '#E6E2D3', 
-        border: `${6 * scale}px solid #000`, 
-        borderRadius: `${32 * scale}px`,
-        boxShadow: `0 ${12 * scale}px 0px #000`,
-        overflow: 'hidden'
-      }}>
-        {/* Screen Area (Orange) */}
-        <div className="absolute" style={{ top: `${24 * scale}px`, left: `${24 * scale}px`, right: `${90 * scale}px`, bottom: `${24 * scale}px`, backgroundColor: '#000', borderRadius: `${24 * scale}px`, border: `${4 * scale}px solid #000`, overflow: 'hidden' }}>
-          <div className="w-full h-full flex flex-col items-center justify-center relative" style={{ backgroundColor: '#FF5C00' }}>
-            <div className="absolute inset-0 opacity-10" style={{ background: 'repeating-linear-gradient(transparent, transparent 2px, black 2px, black 4px)' }}></div>
-            
-            {/* Pixel Smiley (Yellow) */}
-            <div className="flex gap-4 mb-2" style={{ gap: `${16 * scale}px` }}>
-              <div style={{ width: `${24 * scale}px`, height: `${24 * scale}px`, backgroundColor: '#FFD600' }} />
-              <div style={{ width: `${24 * scale}px`, height: `${24 * scale}px`, backgroundColor: '#FFD600' }} />
-            </div>
-            {/* Smile Curve (Pixelated) */}
-            <div className="flex flex-col items-center">
-              <div className="flex" style={{ gap: `${4 * scale}px` }}>
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${4 * scale}px)` }} />
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${10 * scale}px)` }} />
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${10 * scale}px)` }} />
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${10 * scale}px)` }} />
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${10 * scale}px)` }} />
-                <div style={{ width: `${10 * scale}px`, height: `${10 * scale}px`, backgroundColor: '#FFD600', transform: `translateY(${4 * scale}px)` }} />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right Side Panel */}
-        <div className="absolute flex flex-col items-center" style={{ top: '0', right: '0', bottom: '0', width: `${90 * scale}px`, paddingTop: `${20 * scale}px` }}>
-          {/* Vents */}
-          <div className="flex flex-col gap-2 mb-6" style={{ gap: `${6 * scale}px` }}>
-            <div style={{ width: `${40 * scale}px`, height: `${6 * scale}px`, backgroundColor: '#000', borderRadius: `${4 * scale}px` }} />
-            <div style={{ width: `${40 * scale}px`, height: `${6 * scale}px`, backgroundColor: '#000', borderRadius: `${4 * scale}px` }} />
-          </div>
-          {/* Sliders */}
-          <div className="flex" style={{ gap: `${12 * scale}px` }}>
-            <div className="relative" style={{ width: `${6 * scale}px`, height: `${80 * scale}px`, backgroundColor: '#000', borderRadius: `${3 * scale}px` }}>
-              <div style={{ position: 'absolute', top: `${20 * scale}px`, left: `${-10 * scale}px`, width: `${26 * scale}px`, height: `${8 * scale}px`, backgroundColor: '#000', borderRadius: `${2 * scale}px` }} />
-            </div>
-            <div className="relative" style={{ width: `${6 * scale}px`, height: `${80 * scale}px`, backgroundColor: '#000', borderRadius: `${3 * scale}px` }}>
-              <div style={{ position: 'absolute', top: `${50 * scale}px`, left: `${-10 * scale}px`, width: `${26 * scale}px`, height: `${8 * scale}px`, backgroundColor: '#000', borderRadius: `${2 * scale}px` }} />
-            </div>
-          </div>
-        </div>
 
-        {/* Thick Black Bottom Border/Panel */}
-        <div className="absolute bottom-0 left-0 right-0 flex items-center px-6" style={{ backgroundColor: '#000', height: `${10 * scale}px` }}>
-          <div style={{ width: `${30 * scale}px`, height: `${6 * scale}px`, backgroundColor: '#E6E2D3', borderRadius: `${3 * scale}px`, opacity: 0.3 }} />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 export default function UlarTangga() {
   const navigate = useNavigate();
@@ -442,7 +377,7 @@ export default function UlarTangga() {
   const animateSpecial = useCallback((player, from, to, type, onDone) => {
     if (type === 'snake') sfxSnake(); else sfxLadder();
     setMsg(type === 'snake'
-      ? `🐍 SNAKE! Player ${player+1} drops from ${from} to ${to}!`
+      ? `🐍 CHUTE! Player ${player+1} drops from ${from} to ${to}!`
       : `🪜 LADDER! Player ${player+1} climbs from ${from} to ${to}!`
     );
     
@@ -593,21 +528,9 @@ export default function UlarTangga() {
   if (gameState !== 'playing') {
     return (
       <div style={{ position:'fixed', inset:0, background:'#f4f4f0', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', gap:32 }}>
-        <div style={{ 
-          color: '#000', 
-          fontSize: window.innerWidth < 500 ? '32px' : '48px', 
-          fontWeight: '900', 
-          letterSpacing: '4px',
-          textShadow: '4px 4px 0px #FF4911',
-          zIndex: 10,
-          textAlign: 'center',
-          padding: '0 20px',
-          lineHeight: '1.2'
-        }}>
-          BANKR<br/>SNAKE
-        </div>
+
         
-        <PixelTV />
+        <img src="/tv-screen.png" alt="Logo" style={{ width: '280px', height: 'auto', borderRadius: '20px', boxShadow: '8px 8px 0px #000' }} />
         
         {gameState === 'menu' && (
           <button onClick={findMatch} style={{ background:'#00FF66', border:'4px solid #000', color:'#000', padding:'15px 40px', fontSize:20, fontWeight:'bold', cursor:'pointer', boxShadow:'6px 6px 0px #000', transition:'all 0.1s', textTransform:'uppercase' }}
@@ -619,7 +542,7 @@ export default function UlarTangga() {
         )}
 
         {gameState === 'menu' && (
-          <a href="https://x.com/bankrsnake" target="_blank" rel="noreferrer" style={{ 
+          <a href="https://x.com/mychutes" target="_blank" rel="noreferrer" style={{ 
             color:'#000', 
             fontSize:14, 
             fontWeight:'900', 
@@ -631,7 +554,7 @@ export default function UlarTangga() {
           onMouseEnter={e => e.currentTarget.style.background = '#FFE100'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            @BANKRSNAKE
+            @mychutes
           </a>
         )}
 
@@ -909,9 +832,8 @@ export default function UlarTangga() {
 
         {/* ── PANEL KANAN ── */}
         <div className="side-panel" style={{ width:240, display:'flex', flexDirection:'column', gap:12 }}>
-          {/* Title Logo */}
-          <div className="pixel-tv-container" style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
-            <PixelTV scale={0.7} />
+          <div className="logo-container" style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
+            <img src="/tv-screen.png" alt="Logo" style={{ width: '180px', height: 'auto', borderRadius: '12px', boxShadow: '4px 4px 0px #000' }} />
           </div>
 
           {/* Player cards */}
@@ -960,7 +882,7 @@ export default function UlarTangga() {
           <div style={{ background:'#fff', border:'4px solid #000', padding:'10px', boxShadow:'4px 4px 0px #000' }}>
             <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4 }}>
               <div style={{ width:20, height:4, background:'#FF4911', border:'1px solid #000' }}/>
-              <span style={{ color:'#000', fontSize:10, fontWeight:'bold' }}>= Snake (down)</span>
+              <span style={{ color:'#000', fontSize:10, fontWeight:'bold' }}>= Chute (down)</span>
             </div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
               <div style={{ width:20, height:4, background:'#00FF66', border:'1px solid #000' }}/>
