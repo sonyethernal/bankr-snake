@@ -283,7 +283,7 @@ export default function UlarTangga() {
     const serverUrl = import.meta.env.VITE_BACKEND_URL || (
       window.location.hostname === 'localhost' 
         ? 'http://localhost:3001' 
-        : `http://${window.location.hostname}:3001`
+        : window.location.origin
     );
     
     socketRef.current = io(serverUrl);
