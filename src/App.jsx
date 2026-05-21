@@ -5,7 +5,7 @@ import Battlefield from './pages/Battlefield';
 function App() {
   return (
     <Router>
-      <div className="relative min-h-screen w-full overflow-hidden bg-[#f4f4f0]">
+      <div className="relative min-h-screen w-full overflow-hidden bg-[#000]">
         <Routes>
           <Route path="/" element={<Battlefield />} />
           <Route path="/game" element={<Battlefield />} />

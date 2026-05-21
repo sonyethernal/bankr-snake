@@ -527,13 +527,13 @@ export default function UlarTangga() {
 
   if (gameState !== 'playing') {
     return (
-      <div style={{ position:'fixed', inset:0, background:'#f4f4f0', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', gap:32 }}>
+      <div style={{ position:'fixed', inset:0, background:'#000', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', fontFamily:'"Courier New",monospace', gap:32 }}>
 
         
-        <img src="/tv-screen.png" alt="Logo" style={{ width: '280px', height: 'auto', borderRadius: '20px', boxShadow: '8px 8px 0px #000' }} />
+        <img src="/logo.png" alt="Logo" style={{ width: '280px', height: 'auto', borderRadius: '20px' }} />
         
         {gameState === 'menu' && (
-          <button onClick={findMatch} style={{ background:'#00FF66', border:'4px solid #000', color:'#000', padding:'15px 40px', fontSize:20, fontWeight:'bold', cursor:'pointer', boxShadow:'6px 6px 0px #000', transition:'all 0.1s', textTransform:'uppercase' }}
+          <button onClick={findMatch} style={{ background:'#fff', border:'4px solid #000', color:'#000', padding:'15px 40px', fontSize:20, fontWeight:'bold', cursor:'pointer', boxShadow:'6px 6px 0px #000', transition:'all 0.1s', textTransform:'uppercase' }}
             onMouseDown={e => { e.currentTarget.style.transform = 'translate(4px, 4px)'; e.currentTarget.style.boxShadow = '2px 2px 0px #000'; }}
             onMouseUp={e => { e.currentTarget.style.transform = 'translate(0px, 0px)'; e.currentTarget.style.boxShadow = '6px 6px 0px #000'; }}
           >
@@ -542,19 +542,19 @@ export default function UlarTangga() {
         )}
 
         {gameState === 'menu' && (
-          <a href="https://x.com/mychutes" target="_blank" rel="noreferrer" style={{ 
-            color:'#000', 
+          <a href="https://x.com/gitsnake" target="_blank" rel="noreferrer" style={{ 
+            color:'#fff', 
             fontSize:14, 
             fontWeight:'900', 
             textDecoration:'none', 
-            borderBottom:'4px solid #000',
+            borderBottom:'4px solid #fff',
             letterSpacing:2,
             transition:'all 0.1s'
           }}
-          onMouseEnter={e => e.currentTarget.style.background = '#FFE100'}
-          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff'; }}
           >
-            @mychutes
+            @gitsnake
           </a>
         )}
 
@@ -565,7 +565,7 @@ export default function UlarTangga() {
               fontSize:22, 
               fontWeight:'bold', 
               marginBottom:20, 
-              background:'#FFE100', 
+              background:'#fff', 
               padding:'20px 40px', 
               border:'4px solid #000', 
               boxShadow:'8px 8px 0px #000',
@@ -581,21 +581,21 @@ export default function UlarTangga() {
               SEARCHING FOR OPPONENT...
               <div style={{ fontSize:14, marginTop:10, fontWeight: 'normal', opacity: 0.8 }}>PLEASE WAIT FOR ANOTHER PLAYER TO JOIN</div>
             </div>
-            <button onClick={cancelSearch} style={{ background:'#FF4911', border:'4px solid #000', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #000' }}>CANCEL</button>
+            <button onClick={cancelSearch} style={{ background:'#fff', border:'4px solid #000', color:'#000', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #000' }}>CANCEL</button>
           </div>
         )}
 
         {gameState === 'disconnected' && (
           <div style={{ textAlign:'center' }}>
-            <div style={{ color:'#fff', background:'#FF4911', fontSize:24, fontWeight:'bold', marginBottom:20, padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>OPPONENT DISCONNECTED!</div>
-            <button onClick={() => setGameState('menu')} style={{ background:'#3300FF', border:'4px solid #000', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #000' }}>RETURN TO MENU</button>
+            <div style={{ color:'#000', background:'#fff', fontSize:24, fontWeight:'bold', marginBottom:20, padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>OPPONENT DISCONNECTED!</div>
+            <button onClick={() => setGameState('menu')} style={{ background:'#000', border:'4px solid #fff', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #fff' }}>RETURN TO MENU</button>
           </div>
         )}
 
         {gameState === 'afk_kicked' && (
           <div style={{ textAlign:'center' }}>
-            <div style={{ color:'#fff', background:'#FF4911', fontSize:24, fontWeight:'bold', marginBottom:20, padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>KICKED FOR AFK!</div>
-            <button onClick={() => { setGameState('menu'); setTimeLeft(10); }} style={{ background:'#3300FF', border:'4px solid #000', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #000' }}>RETURN TO MENU</button>
+            <div style={{ color:'#000', background:'#fff', fontSize:24, fontWeight:'bold', marginBottom:20, padding:'10px 20px', border:'4px solid #000', boxShadow:'4px 4px 0px #000' }}>KICKED FOR AFK!</div>
+            <button onClick={() => { setGameState('menu'); setTimeLeft(10); }} style={{ background:'#000', border:'4px solid #fff', color:'#fff', padding:'10px 20px', fontSize:16, fontWeight:'bold', cursor:'pointer', boxShadow:'4px 4px 0px #fff' }}>RETURN TO MENU</button>
           </div>
         )}
       </div>
@@ -606,7 +606,7 @@ export default function UlarTangga() {
     <div style={{ 
       position:'fixed', 
       inset:0, 
-      background:'#f4f4f0', 
+      background:'#000', 
       display:'flex', 
       alignItems:'center', 
       justifyContent:'center', 
@@ -646,13 +646,13 @@ export default function UlarTangga() {
         }}>
           <svg width={BOARD_PX} height={BOARD_PX}>
             {/* Outer board bg */}
-            <rect width={BOARD_PX} height={BOARD_PX} fill="#f5f0e0"/>
+            <rect width={BOARD_PX} height={BOARD_PX} fill="#000"/>
 
             {/* Colored cells */}
             {BOARD.map((row, ri) => row.map((num, ci) => {
               const palette = [
-                '#FFE100', '#00FF66', '#3300FF', '#FF4911', '#FF00FF',
-                '#fff', '#00CCFF', '#FF00FF', '#00FF66', '#FFE100'
+                '#222', '#333', '#444', '#555', '#666',
+                '#777', '#888', '#999', '#aaa', '#bbb'
               ];
               const isHl = highlight === num;
               const isFinish = num === 100;
@@ -703,16 +703,16 @@ export default function UlarTangga() {
                     return <line key={`ro${i}`} x1={rx+nx} y1={ry+ny} x2={rx-nx} y2={ry-ny} stroke="#000" strokeWidth={10} strokeLinecap="square"/>;
                   })}
                   {/* Inner color */}
-                  <line x1={bt.x+nx} y1={bt.y+ny} x2={tp.x+nx} y2={tp.y+ny} stroke="#00FF66" strokeWidth={4} strokeLinecap="square"/>
-                  <line x1={bt.x-nx} y1={bt.y-ny} x2={tp.x-nx} y2={tp.y-ny} stroke="#00FF66" strokeWidth={4} strokeLinecap="square"/>
+                  <line x1={bt.x+nx} y1={bt.y+ny} x2={tp.x+nx} y2={tp.y+ny} stroke="#fff" strokeWidth={4} strokeLinecap="square"/>
+                  <line x1={bt.x-nx} y1={bt.y-ny} x2={tp.x-nx} y2={tp.y-ny} stroke="#fff" strokeWidth={4} strokeLinecap="square"/>
                   {Array.from({length:rungs}).map((_,i)=>{
                     const t2=(i+1)/(rungs+1);
                     const rx=bt.x+dx*t2, ry=bt.y+dy*t2;
-                    return <line key={`ri${i}`} x1={rx+nx} y1={ry+ny} x2={rx-nx} y2={ry-ny} stroke="#00FF66" strokeWidth={4} strokeLinecap="square"/>;
+                    return <line key={`ri${i}`} x1={rx+nx} y1={ry+ny} x2={rx-nx} y2={ry-ny} stroke="#fff" strokeWidth={4} strokeLinecap="square"/>;
                   })}
                   {/* Blocks at ends */}
-                  <rect x={bt.x-6} y={bt.y-6} width={12} height={12} fill="#00FF66" stroke="#000" strokeWidth={4}/>
-                  <rect x={tp.x-6} y={tp.y-6} width={12} height={12} fill="#00FF66" stroke="#000" strokeWidth={4}/>
+                  <rect x={bt.x-6} y={bt.y-6} width={12} height={12} fill="#fff" stroke="#000" strokeWidth={4}/>
+                  <rect x={tp.x-6} y={tp.y-6} width={12} height={12} fill="#fff" stroke="#000" strokeWidth={4}/>
                 </g>
               );
             })}
@@ -720,7 +720,7 @@ export default function UlarTangga() {
             {/* Snakes */}
             {Object.entries(SNAKES).map(([head, tail], idx) => {
               const h = squareToXY(Number(head)), t = squareToXY(tail);
-              const colors = ['#FF4911','#FF00FF','#3300FF'];
+              const colors = ['#fff','#ccc','#999'];
               const col = colors[idx % colors.length];
               const midX = (h.x+t.x)/2 + (idx%2===0?50:-50);
               const midY = (h.y+t.y)/2 + (idx%3===0?30:-30);
@@ -742,8 +742,8 @@ export default function UlarTangga() {
                   {/* Blocky Tongue */}
                   <line x1={h.x-2} y1={h.y+12} x2={h.x-6} y2={h.y+20} stroke="#000" strokeWidth={4} strokeLinecap="square"/>
                   <line x1={h.x+2} y1={h.y+12} x2={h.x+6} y2={h.y+20} stroke="#000" strokeWidth={4} strokeLinecap="square"/>
-                  <line x1={h.x-2} y1={h.y+12} x2={h.x-6} y2={h.y+20} stroke="#FF4911" strokeWidth={2} strokeLinecap="square"/>
-                  <line x1={h.x+2} y1={h.y+12} x2={h.x+6} y2={h.y+20} stroke="#FF4911" strokeWidth={2} strokeLinecap="square"/>
+                  <line x1={h.x-2} y1={h.y+12} x2={h.x-6} y2={h.y+20} stroke="#fff" strokeWidth={2} strokeLinecap="square"/>
+                  <line x1={h.x+2} y1={h.y+12} x2={h.x+6} y2={h.y+20} stroke="#fff" strokeWidth={2} strokeLinecap="square"/>
                   
                   {/* Blocky Tail tip */}
                   <rect x={t.x-6} y={t.y-6} width={12} height={12} fill={col} stroke="#000" strokeWidth={4}/>
@@ -755,15 +755,15 @@ export default function UlarTangga() {
             {p2xy && (
               <g style={{ transform: `translate(${p2xy.x}px, ${p2xy.y}px)`, transition: isSliding ? 'transform 1s ease-in-out' : 'transform 0.3s ease-in-out' }}>
                 <circle cx={13} cy={3} r={15} fill="#000"/>
-                <circle cx={10} cy={0} r={14} fill="#FF4911" stroke="#000" strokeWidth={4}/>
-                <text x={10} y={2} fontSize={12} fontWeight="900" fill="#fff" textAnchor="middle" dominantBaseline="middle" fontFamily="Arial">P2</text>
+                <circle cx={10} cy={0} r={14} fill="#aaa" stroke="#000" strokeWidth={4}/>
+                <text x={10} y={2} fontSize={12} fontWeight="900" fill="#000" textAnchor="middle" dominantBaseline="middle" fontFamily="Arial">P2</text>
               </g>
             )}
             {/* Player 1 token */}
             {p1xy && (
               <g style={{ transform: `translate(${p1xy.x}px, ${p1xy.y}px)`, transition: isSliding ? 'transform 1s ease-in-out' : 'transform 0.3s ease-in-out' }}>
-                <circle cx={-10} cy={0} r={14} fill="#3300FF" stroke="#000" strokeWidth={4}/>
-                <text x={-10} y={2} fontSize={12} fontWeight="900" fill="#fff" textAnchor="middle" dominantBaseline="middle" fontFamily="Arial">P1</text>
+                <circle cx={-10} cy={0} r={14} fill="#fff" stroke="#000" strokeWidth={4}/>
+                <text x={-10} y={2} fontSize={12} fontWeight="900" fill="#000" textAnchor="middle" dominantBaseline="middle" fontFamily="Arial">P1</text>
               </g>
             )}
           </svg>
@@ -799,7 +799,7 @@ export default function UlarTangga() {
             {!winner && turn === playerRole && !rolling && !showingResult && !animating && (
               <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:20, pointerEvents:'auto' }}>
                 <button onClick={rollDice} style={{
-                  background: '#00FF66', border:'6px solid #000', color: '#000',
+                  background: '#fff', border:'6px solid #000', color: '#000',
                   fontSize:32, fontWeight:'900', letterSpacing:4, padding:'20px 40px', cursor:'pointer',
                   fontFamily:'"Courier New",monospace', boxShadow:'12px 12px 0px #000',
                   transition:'all 0.1s', textTransform:'uppercase'
@@ -809,7 +809,7 @@ export default function UlarTangga() {
                 >
                   ROLL DICE
                 </button>
-                <div style={{ background:'#fff', border:'4px solid #000', color:'#FF4911', fontSize:24, fontWeight:'900', padding:'5px 20px', boxShadow:'6px 6px 0px #000' }}>
+                <div style={{ background:'#fff', border:'4px solid #000', color:'#000', fontSize:24, fontWeight:'900', padding:'5px 20px', boxShadow:'6px 6px 0px #000' }}>
                   {timeLeft}s
                 </div>
               </div>
@@ -833,14 +833,14 @@ export default function UlarTangga() {
         {/* ── PANEL KANAN ── */}
         <div className="side-panel" style={{ width:240, display:'flex', flexDirection:'column', gap:12 }}>
           <div className="logo-container" style={{ display:'flex', justifyContent:'center', marginBottom:8 }}>
-            <img src="/tv-screen.png" alt="Logo" style={{ width: '180px', height: 'auto', borderRadius: '12px', boxShadow: '4px 4px 0px #000' }} />
+            <img src="/logo.png" alt="Logo" style={{ width: '180px', height: 'auto', borderRadius: '12px' }} />
           </div>
 
           {/* Player cards */}
           <div className="player-cards-container" style={{ display:'flex', flexDirection:'column', gap:12 }}>
             {[0,1].map(i => (
               <div key={i} className="player-card" style={{
-                background: turn===i&&!winner ? '#FFE100' : '#fff',
+                background: turn===i&&!winner ? '#ddd' : '#fff',
                 border:'3px solid #000',
                 padding:'10px',
                 boxShadow:'4px 4px 0px #000',
@@ -864,10 +864,10 @@ export default function UlarTangga() {
 
           {/* Winner */}
           {winner !== null && (
-            <div style={{ background:'#FF4911', border:'4px solid #000', padding:16, textAlign:'center', boxShadow:'6px 6px 0px #000' }}>
+            <div style={{ background:'#000', border:'4px solid #fff', padding:16, textAlign:'center', boxShadow:'6px 6px 0px #fff' }}>
               <div style={{ fontSize:32, marginBottom:8 }}>🏆</div>
               <div style={{ color:'#fff', fontWeight:'900', fontSize:18, letterSpacing:1 }}>PLAYER {winner+1} WINS!</div>
-              <button onClick={reset} style={{ marginTop:14, background:'#3300FF', border:'4px solid #000', color:'#fff', padding:'10px 20px', cursor:'pointer', fontWeight:'bold', fontFamily:'"Courier New",monospace', fontSize:14, boxShadow:'4px 4px 0px #000' }}>
+              <button onClick={reset} style={{ marginTop:14, background:'#fff', border:'4px solid #000', color:'#000', padding:'10px 20px', cursor:'pointer', fontWeight:'bold', fontFamily:'"Courier New",monospace', fontSize:14, boxShadow:'4px 4px 0px #000' }}>
                 PLAY AGAIN
               </button>
             </div>
@@ -881,11 +881,11 @@ export default function UlarTangga() {
           {/* Legend */}
           <div style={{ background:'#fff', border:'4px solid #000', padding:'10px', boxShadow:'4px 4px 0px #000' }}>
             <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4 }}>
-              <div style={{ width:20, height:4, background:'#FF4911', border:'1px solid #000' }}/>
+              <div style={{ width:20, height:4, background:'#999', border:'1px solid #000' }}/>
               <span style={{ color:'#000', fontSize:10, fontWeight:'bold' }}>= Chute (down)</span>
             </div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-              <div style={{ width:20, height:4, background:'#00FF66', border:'1px solid #000' }}/>
+              <div style={{ width:20, height:4, background:'#fff', border:'1px solid #000' }}/>
               <span style={{ color:'#000', fontSize:10, fontWeight:'bold' }}>= Ladder (up)</span>
             </div>
           </div>
@@ -894,7 +894,7 @@ export default function UlarTangga() {
             <button onClick={handleBack} style={{ flex:1, background:'#fff', border:'4px solid #000', color:'#000', fontSize:12, fontWeight:'bold', letterSpacing:2, padding:'10px 0', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
               ← BACK
             </button>
-            <button onClick={() => { setIsMuted(!isMuted); getAC().resume(); }} style={{ flex:1, background:isMuted?'#f0f0f0':'#00FF66', border:'4px solid #000', color:'#000', fontSize:10, fontWeight:'900', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
+            <button onClick={() => { setIsMuted(!isMuted); getAC().resume(); }} style={{ flex:1, background:isMuted?'#f0f0f0':'#fff', border:'4px solid #000', color:'#000', fontSize:10, fontWeight:'900', cursor:'pointer', fontFamily:'"Courier New",monospace', boxShadow:'4px 4px 0px #000', textTransform:'uppercase' }}>
               {isMuted ? '🔇 Muted' : '🔊 Music'}
             </button>
           </div>
